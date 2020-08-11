@@ -396,6 +396,10 @@ a {
   border-radius: 5px;
   cursor: auto;
 }
+.pizza-block__selector ul li.disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
 .pizza-block__bottom {
   display: -webkit-box;
   display: -ms-flexbox;
