@@ -11,15 +11,20 @@
     "node-sass": "^4.14.1",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
+    "react-content-loader": "^5.1.0",
     "react-dom": "^16.13.1",
+    "react-redux": "^7.2.1",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.1"
+    "react-scripts": "3.4.1",
+    "redux": "^4.0.5",
+    "redux-thunk": "^2.3.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "json-server": "npx json-server --watch --port=3001 public/db.json"
   },
   "eslintConfig": {
     "extends": "react-app"

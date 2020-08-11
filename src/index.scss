@@ -305,6 +305,7 @@ a {
 }
 .sort__label span {
   color: #fe5f1e;
+  text-transform: capitalize;
   border-bottom: 1px dashed #fe5f1e;
   cursor: pointer;
 }
@@ -319,6 +320,7 @@ a {
   overflow: hidden;
   padding: 10px 0;
   width: 160px;
+  text-transform: capitalize;
 }
 .sort__popup ul {
   overflow: hidden;
@@ -341,7 +343,7 @@ a {
   margin-bottom: 65px;
 }
 .pizza-block:not(:nth-of-type(4n)) {
-  margin-right: 35px;
+  margin-right: 3.7%;
 }
 .pizza-block__image {
   width: 260px;
@@ -444,7 +446,7 @@ body {
   flex-wrap: wrap;
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 .content__top {
   display: -webkit-box;
