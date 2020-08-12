@@ -56,7 +56,9 @@ export function Home() {
           ? items.map((pizza) => (
               <Pizza
                 onAddPizza={handleAddPizza}
-                addedCount={cartItems[pizza.id] && cartItems[pizza.id].length}
+                addedCount={
+                  cartItems[pizza.id] && cartItems[pizza.id].items.length
+                }
                 key={pizza.id}
                 {...pizza}
               />
