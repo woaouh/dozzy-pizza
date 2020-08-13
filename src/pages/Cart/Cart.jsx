@@ -6,7 +6,12 @@ import emptyCartImage from '../../assets/img/empty-cart.png';
 
 import { CartItem } from '../../components/CartItem/CartItem';
 
-import { clearCart, removeCartItem } from '../../redux/actions/cart';
+import {
+  clearCart,
+  removeCartItem,
+  plusCartItem,
+  minusCartItem,
+} from '../../redux/actions/cart';
 
 export function Cart() {
   const dispatch = useDispatch();
@@ -30,6 +35,14 @@ export function Cart() {
     ) {
       dispatch(removeCartItem(id));
     }
+  };
+
+  const onPlusItem = (id) => {
+    dispatch(plusCartItem(id));
+  };
+
+  const onMinusItem = (id) => {
+    dispatch(minusCartItem(id));
   };
 
   return (
@@ -123,6 +136,8 @@ export function Cart() {
                   totalPrice={items[pizza.id].totalPrice}
                   totalCount={items[pizza.id].items.length}
                   onRemoveItem={onRemoveItem}
+                  onPlusItem={onPlusItem}
+                  onMinusItem={onMinusItem}
                 />
               ))}
             </div>
@@ -166,9 +181,7 @@ export function Cart() {
           </div>
         ) : (
           <div className='cart cart--empty'>
-            <h2>
-              Cart is empty <icon>😕</icon>
-            </h2>
+            <h2>Cart is empty</h2>
             <p>
               You did not choose a pizza yet.
               <br />
