@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import { Button } from '../Button/Button';
+import classes from './Pizza.module.sass';
 
 export function Pizza({
   id,
@@ -40,17 +41,17 @@ export function Pizza({
   };
 
   return (
-    <div className='pizza-block'>
-      <img className='pizza-block__image' src={imageUrl} alt={name} />
-      <h4 className='pizza-block__title'>{name}</h4>
-      <div className='pizza-block__selector'>
+    <div className={classes.Pizza}>
+      <img className={classes.Image} src={imageUrl} alt={name} />
+      <h4 className={classes.Title}>{name}</h4>
+      <div className={classes.Selector}>
         <ul>
           {doughTypes.map((type, index) => (
             <li
               key={`${type}_${index}`}
               className={classNames({
-                active: activeType === index,
-                disabled: !types.includes(index),
+                [classes.Active]: activeType === index,
+                [classes.Disabled]: !types.includes(index),
               })}
               onClick={() => onSelectType(index)}
             >
@@ -63,8 +64,8 @@ export function Pizza({
             <li
               key={`${size}_${index}`}
               className={classNames({
-                active: activeSize === index,
-                disabled: !sizes.includes(size),
+                [classes.Active]: activeSize === index,
+                [classes.Disabled]: !sizes.includes(size),
               })}
               onClick={() => onSelectSize(index)}
             >
@@ -73,9 +74,9 @@ export function Pizza({
           ))}
         </ul>
       </div>
-      <div className='pizza-block__bottom'>
-        <div className='pizza-block__price'>{price} $</div>
-        <Button onClick={handleAddPizza} className='button--add' outline>
+      <div className={classes.Bottom}>
+        <div className={classes.Price}>{price} $</div>
+        <Button onClick={handleAddPizza} className={classes.AddButton} outline>
           <svg
             width='12'
             height='12'

@@ -2,16 +2,18 @@ import React from 'react';
 import { memo } from 'react';
 import PropTypes from 'prop-types';
 
+import classes from './Categories.module.sass';
+
 export const Categories = memo(function Categories({
   activeCategory,
   items,
   onClickCategory,
 }) {
   return (
-    <div className='categories'>
+    <div className={classes.Categories}>
       <ul>
         <li
-          className={activeCategory === null ? 'active' : ''}
+          className={activeCategory === null ? classes.Active : ''}
           onClick={() => onClickCategory(null)}
         >
           All
@@ -19,7 +21,7 @@ export const Categories = memo(function Categories({
         {items.map((category, index) => (
           <li
             key={`${category}_${index}`}
-            className={activeCategory === index ? 'active' : ''}
+            className={activeCategory === index ? classes.Active : ''}
             onClick={() => onClickCategory(index)}
           >
             {category}

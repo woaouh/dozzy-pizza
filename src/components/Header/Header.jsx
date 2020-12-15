@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import logoSVG from '../../assets/img/pizza-logo.svg';
+import classes from './Header.module.sass';
 
 import { Button } from '../Button/Button';
 
@@ -13,10 +14,10 @@ export function Header() {
   }));
 
   return (
-    <div className='header'>
-      <div className='container'>
+    <div className={classes.Header}>
+      <div className={`container ${classes.HeaderContainer}`}>
         <Link to='/'>
-          <div className='header__logo'>
+          <div className={classes.Logo}>
             <img width='38' src={logoSVG} alt='Pizza logo' />
             <div>
               <h1>Dozzy Pizza</h1>
@@ -25,11 +26,11 @@ export function Header() {
           </div>
         </Link>
 
-        <div className='header__cart'>
+        <div>
           <Link to='/cart'>
-            <Button className='button--cart'>
+            <Button className={classes.CartButton}>
               <span>{totalPrice} $</span>
-              <div className='button__delimiter'></div>
+              <div className={classes.Delimiter}></div>
               <svg
                 width='18'
                 height='18'

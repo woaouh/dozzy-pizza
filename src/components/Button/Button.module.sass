@@ -1,0 +1,36 @@
+.Button
+  display: inline-block
+  background-color: #fe5f1e
+  border-radius: 30px
+  padding: 10px 20px
+  min-width: 100px
+  text-align: center
+  cursor: pointer
+  transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out
+  border: 1px solid transparent
+  user-select: none
+  &:hover
+    background-color: #f24701
+  &:active
+    background-color: #de4101
+    transform: translateY(1px)
+  span 
+    color: #fff
+  i, span, path, svg
+    transition: all 0.15s ease-in-out
+  &.Outline
+    background-color: #fff
+    border-color: #fe5f1e
+    &:hover
+      background-color: #fe5f1e
+      span
+        color: #ffffff
+      svg path
+        fill: #ffffff
+    &:active
+      background-color: #f24701
+    span
+      color: #fe5f1e
+    svg path
+      fill: #fe5f1e
+  

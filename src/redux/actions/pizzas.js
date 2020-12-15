@@ -14,7 +14,7 @@ export const fetchPizzas = (sortBy, category) => (dispatch) => {
       }&_sort=${sortBy}&_order=asc`
     )
     .then(({ data }) => {
-      dispatch(setPizzas(data));
+      dispatch(setPizzas(data));  
     });
 };
 

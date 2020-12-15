@@ -1,0 +1,42 @@
+.Sort 
+  position: relative
+  .Label
+    display: flex
+    align-items: center
+    svg
+      margin-right: 8px
+      transform: rotate(180deg)
+      &.Rotated 
+        transform: rotate(0)
+    b
+      margin-right: 8px
+    span
+      color: #fe5f1e
+      text-transform: capitalize
+      border-bottom: 1px dashed #fe5f1e
+      cursor: pointer
+  
+
+.SortPopup 
+  position: absolute
+  right: 0
+  margin-top: 15px
+  background: #ffffff
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.09)
+  border-radius: 10px
+  overflow: hidden
+  padding: 10px 0
+  width: 160px
+  text-transform: capitalize
+  ul
+    overflow: hidden
+    li
+      padding: 12px 20px
+      cursor: pointer
+      &:hover
+        background: rgba(254, 95, 30, 0.05)
+      &.Active
+        background: rgba(254, 95, 30, 0.05)
+        font-weight: bold
+        color: #fe5f1e
+  

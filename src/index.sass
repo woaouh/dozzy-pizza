@@ -1,0 +1,49 @@
+@mixin font($fname, $fstyle, $fweight, $furl)
+  @font-face
+    font-family: $fname
+    font-style: $fstyle
+    font-weight: $fweight
+    src: local($fname), url($furl) format("woff")
+
+@include font("Proxima Nova", normal, 400, './assets/fonts/ProximaNova-Regular.woff')
+@include font("Proxima Nova", normal, 900, './assets/fonts/ProximaNova-Black.woff')
+@include font("Proxima Nova", normal, 800, './assets/fonts/ProximaNova-Extrabld.woff')
+@include font("Proxima Nova", bold, 700, './assets/fonts/ProximaNova-Bold.woff')
+
+* 
+  padding: 0
+  margin: 0
+  list-style: none
+  outline: none
+  font-family: 'Proxima Nova', sans-serif
+  box-sizing: border-box
+
+body 
+  background-color: #ffdf8c
+  padding: 50px 0
+
+a,
+span,
+p,
+b,
+h1,
+h2,
+h3,
+h4,
+h5 
+  color: #232323
+
+h1 
+  font-size: 48px
+
+h2 
+  font-weight: 600
+  font-size: 28px
+  line-height: 30px
+
+a 
+  text-decoration: none
+
+.container 
+  width: 90%
+  margin: 0 auto

@@ -1,6 +1,8 @@
 import React from 'react';
 import { Button } from '../Button/Button';
 
+import classes from './CartItem.module.sass';
+
 export function CartItem({
   id,
   name,
@@ -26,20 +28,20 @@ export function CartItem({
   };
 
   return (
-    <div className='cart__item'>
-      <div className='cart__item-img'>
+    <div className={classes.CartItem}>
+      <div className={classes.ImageContainer}>
         <img className='pizza-block__image' src={imageUrl} alt='Pizza' />
       </div>
-      <div className='cart__item-info'>
+      <div className={classes.Info}>
         <h3>{name}</h3>
         <p>
           {type} dough, {size} sm.
         </p>
       </div>
-      <div className='cart__item-count'>
+      <div className={classes.Count}>
         <Button
           onClick={handleMinusItem}
-          className='button--circle cart__item-count-minus'
+          className={`${classes.CircleButton} ${classes.CountMinus}`}
           outline
         >
           <svg
@@ -62,7 +64,7 @@ export function CartItem({
         <b>{totalCount}</b>
         <Button
           onClick={handlePlusItem}
-          className='button--circle cart__item-count-plus'
+          className={`${classes.CircleButton}`}
           outline
         >
           <svg
@@ -83,11 +85,11 @@ export function CartItem({
           </svg>
         </Button>
       </div>
-      <div className='cart__item-price'>
+      <div className={classes.Price}>
         <b>{totalPrice} $</b>
       </div>
-      <div className='cart__item-remove'>
-        <Button onClick={handleRemoveItem} className='button--circle' outline>
+      <div className={classes.Remove}>
+        <Button onClick={handleRemoveItem} className={`${classes.CircleButton} ${classes.RemoveButton}`} outline>
           <svg
             width='10'
             height='10'

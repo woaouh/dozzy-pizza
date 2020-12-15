@@ -6,12 +6,15 @@ import emptyCartImage from '../../assets/img/empty-cart.png';
 
 import { CartItem } from '../../components/CartItem/CartItem';
 
+import classes from './Cart.module.sass';
+
 import {
   clearCart,
   removeCartItem,
   plusCartItem,
   minusCartItem,
 } from '../../redux/actions/cart';
+import { Button } from '../../components/Button/Button';
 
 export function Cart() {
   const dispatch = useDispatch();
@@ -46,12 +49,12 @@ export function Cart() {
   };
 
   return (
-    <div className='content'>
-      <div className='container container--cart'>
+    <div className={classes.Cart}>
+      <div className={`${classes.Container} container`}>
         {totalCount ? (
           <div className='cart'>
-            <div className='cart__top'>
-              <h2 className='content__title'>
+            <div className={classes.Top}>
+              <h2 className={classes.Title}>
                 <svg
                   width='18'
                   height='18'
@@ -83,7 +86,7 @@ export function Cart() {
                 </svg>
                 Cart
               </h2>
-              <div className='cart__clear'>
+              <div className={classes.Clear}>
                 <svg
                   width='20'
                   height='20'
@@ -141,8 +144,8 @@ export function Cart() {
                 />
               ))}
             </div>
-            <div className='cart__bottom'>
-              <div className='cart__bottom-details'>
+            <div className={classes.Bottom}>
+              <div className={classes.Details}>
                 <span>
                   Quantity: <b>{totalCount}</b>{' '}
                 </span>
@@ -150,37 +153,20 @@ export function Cart() {
                   Amount of the order: <b>{totalPrice} $</b>{' '}
                 </span>
               </div>
-              <div className='cart__bottom-buttons'>
+              <div className={classes.Buttons}>
                 <Link
                   to='/'
-                  className='button button--outline button--add go-back-btn'
                 >
-                  <svg
-                    width='8'
-                    height='14'
-                    viewBox='0 0 8 14'
-                    fill='none'
-                    xmlns='http://www.w3.org/2000/svg'
-                  >
-                    <path
-                      d='M7 13L1 6.93015L6.86175 1'
-                      stroke='#D3D3D3'
-                      strokeWidth='1.5'
-                      strokeLinecap='round'
-                      strokeLinejoin='round'
-                    />
-                  </svg>
-
-                  <span>Turn back</span>
+                  <Button className={classes.BlackButton}>Turn back</Button>
                 </Link>
-                <div className='button pay-btn'>
-                  <span>Buy now</span>
+                <div>
+                  <Button className={classes.PayButton}>Buy now</Button>
                 </div>
               </div>
             </div>
           </div>
         ) : (
-          <div className='cart cart--empty'>
+          <div className={classes.EmptyCart}>
             <h2>Cart is empty</h2>
             <p>
               You did not choose a pizza yet.
@@ -189,8 +175,8 @@ export function Cart() {
               page.
             </p>
             <img src={emptyCartImage} alt='Empty cart' />
-            <Link to='/' className='button button--black'>
-              <span>Turn back</span>
+            <Link to='/' >
+              <Button className={classes.BlackButton}>Turn back</Button>
             </Link>
           </div>
         )}

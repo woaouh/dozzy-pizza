@@ -10,6 +10,8 @@ import { SortPopup } from '../../components/SortPopup/SortPopup';
 import { Pizza } from '../../components/Pizza/Pizza';
 import { PizzaSkeleton } from '../../components/Pizza/PizzaSkeleton';
 
+import classes from './Home.module.sass';
+
 const categoryNames = ['Meat', 'Vegan', 'Grilled', 'Spicy', 'Closed'];
 const sortItems = ['rating', 'price', 'name'];
 
@@ -38,7 +40,7 @@ export function Home() {
 
   return (
     <div className='container'>
-      <div className='content__top'>
+      <div className={classes.Top}>
         <Categories
           items={categoryNames}
           activeCategory={category}
@@ -50,8 +52,7 @@ export function Home() {
           onClickSortType={onSelectSortType}
         />
       </div>
-      <h2 className='content__title'>All</h2>
-      <div className='content__items'>
+      <div className={classes.Items}>
         {isLoaded
           ? items.map((pizza) => (
               <Pizza

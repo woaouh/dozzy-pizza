@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef, memo } from 'react';
 import PropTypes from 'prop-types';
 
+import classes from './SortPopup.module.sass';
+
 export const SortPopup = memo(function SortPopup({
   items,
   activeSortType,
@@ -31,10 +33,10 @@ export const SortPopup = memo(function SortPopup({
   }, []);
 
   return (
-    <div ref={sortRef} className='sort'>
-      <div className='sort__label'>
+    <div ref={sortRef} className={classes.Sort}>
+      <div className={classes.Label}>
         <svg
-          className={visiblePopup ? 'rotated' : ''}
+          className={visiblePopup ? classes.Rotated : ''}
           width='10'
           height='6'
           viewBox='0 0 10 6'
@@ -50,12 +52,12 @@ export const SortPopup = memo(function SortPopup({
         <span onClick={togglePopupVisibility}>{activeLabel}</span>
       </div>
       {visiblePopup && (
-        <div className='sort__popup'>
+        <div className={classes.SortPopup}>
           <ul>
             {items.map((type, index) => (
               <li
                 key={`${type}_${index}`}
-                className={activeSortType === type ? 'active' : ''}
+                className={activeSortType === type ? classes.Active : ''}
                 onClick={() => onSelectSort(type)}
               >
                 {type}
