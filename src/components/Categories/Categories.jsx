@@ -10,25 +10,23 @@ export const Categories = memo(function Categories({
   onClickCategory,
 }) {
   return (
-    <div className={classes.Categories}>
-      <ul>
+    <ul className={classes.Categories}>
+      <li
+        className={activeCategory === null ? classes.Active : ''}
+        onClick={() => onClickCategory(null)}
+      >
+        All
+      </li>
+      {items.map((category, index) => (
         <li
-          className={activeCategory === null ? classes.Active : ''}
-          onClick={() => onClickCategory(null)}
+          key={`${category}_${index}`}
+          className={activeCategory === index ? classes.Active : ''}
+          onClick={() => onClickCategory(index)}
         >
-          All
+          {category}
         </li>
-        {items.map((category, index) => (
-          <li
-            key={`${category}_${index}`}
-            className={activeCategory === index ? classes.Active : ''}
-            onClick={() => onClickCategory(index)}
-          >
-            {category}
-          </li>
-        ))}
-      </ul>
-    </div>
+      ))}
+    </ul>
   );
 });
 
