@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 
 import { Button } from '../Button/Button';
 import { ReactComponent as PlusSvg } from '../../assets/svg/plus.svg';
 import classes from './Pizza.module.sass';
+import Selector from '../UI/Selector/Selector';
 
 export function Pizza({
   id,
@@ -42,39 +42,17 @@ export function Pizza({
   };
 
   return (
-    <div className={classes.Pizza}>
+    <li className={classes.Pizza}>
       <img className={classes.Image} src={imageUrl} alt={name} />
       <h4 className={classes.Title}>{name}</h4>
-      <div className={classes.Selector}>
-        <ul>
-          {doughTypes.map((type, index) => (
-            <li
-              key={`${type}_${index}`}
-              className={classNames({
-                [classes.Active]: activeType === index,
-                [classes.Disabled]: !types.includes(index),
-              })}
-              onClick={() => onSelectType(index)}
-            >
-              {type}
-            </li>
-          ))}
-        </ul>
-        <ul>
-          {pizzaSizes.map((size, index) => (
-            <li
-              key={`${size}_${index}`}
-              className={classNames({
-                [classes.Active]: activeSize === index,
-                [classes.Disabled]: !sizes.includes(size),
-              })}
-              onClick={() => onSelectSize(index)}
-            >
-              {size} sm.
-            </li>
-          ))}
-        </ul>
-      </div>
+      <Selector
+        types={types}
+        sizes={sizes}
+        onSelectSize={onSelectSize}
+        onSelectType={onSelectType}
+        activeSize={activeSize}
+        activeType={activeType}
+      />
       <div className={classes.Bottom}>
         <div className={classes.Price}>{price} $</div>
         <Button onClick={handleAddPizza} className={classes.AddButton} outline>
@@ -83,7 +61,7 @@ export function Pizza({
           {addedCount && <i>{addedCount}</i>}
         </Button>
       </div>
-    </div>
+    </li>
   );
 }
 

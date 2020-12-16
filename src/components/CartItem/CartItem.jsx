@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from '../Button/Button';
-import {ReactComponent as PlusSvg} from '../../assets/svg/plus.svg';
+import { ReactComponent as PlusSvg } from '../../assets/svg/plus.svg';
 
 import classes from './CartItem.module.sass';
 
