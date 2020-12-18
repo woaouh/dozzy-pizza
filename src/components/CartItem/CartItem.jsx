@@ -1,10 +1,12 @@
 import React from 'react';
-import { Button } from '../Button/Button';
+import PropTypes from 'prop-types';
+
+import Button from '../Button/Button';
 import { ReactComponent as PlusSvg } from '../../assets/svg/plus.svg';
 
 import classes from './CartItem.module.sass';
 
-export function CartItem({
+export default function CartItem({
   id,
   name,
   type,
@@ -31,12 +33,17 @@ export function CartItem({
   return (
     <div className={classes.CartItem}>
       <div className={classes.ImageContainer}>
-        <img className='pizza-block__image' src={imageUrl} alt='Pizza' />
+        <img className="pizza-block__image" src={imageUrl} alt="Pizza" />
       </div>
       <div className={classes.Info}>
         <h3>{name}</h3>
         <p>
-          {type} dough, {size} sm.
+          {type}
+          {' '}
+          dough,
+          {' '}
+          {size}
+          sm.
         </p>
       </div>
       <div className={classes.Count}>
@@ -48,26 +55,34 @@ export function CartItem({
           <PlusSvg />
         </Button>
         <b>{totalCount}</b>
-        <Button
-          onClick={handlePlusItem}
-          className={`${classes.CircleButton}`}
-          outline
-        >
+        <Button onClick={handlePlusItem} circle outline>
           <PlusSvg />
         </Button>
       </div>
       <div className={classes.Price}>
-        <b>{totalPrice} $</b>
+        <b>
+          $
+          {totalPrice}
+        </b>
       </div>
       <div className={classes.Remove}>
-        <Button
-          onClick={handleRemoveItem}
-          className={`${classes.CircleButton} ${classes.RemoveButton}`} 
-          outline
-        >
+        <Button onClick={handleRemoveItem} className={classes.RemoveButton} circle outline>
           <PlusSvg />
         </Button>
       </div>
     </div>
   );
 }
+
+CartItem.propTypes = {
+  id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+  size: PropTypes.number.isRequired,
+  imageUrl: PropTypes.string.isRequired,
+  totalPrice: PropTypes.number.isRequired,
+  totalCount: PropTypes.number.isRequired,
+  onRemoveItem: PropTypes.func.isRequired,
+  onPlusItem: PropTypes.func.isRequired,
+  onMinusItem: PropTypes.func.isRequired,
+};

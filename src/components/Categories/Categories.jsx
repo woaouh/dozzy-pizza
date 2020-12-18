@@ -1,39 +1,48 @@
-import React from 'react';
-import { memo } from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 
 import classes from './Categories.module.sass';
 
-export const Categories = memo(function Categories({
+function Categories({
   activeCategory,
   items,
   onClickCategory,
 }) {
   return (
-    <ul className={classes.Categories}>
-      <li
+    <div className={classes.Categories}>
+      <div
         className={activeCategory === null ? classes.Active : ''}
         onClick={() => onClickCategory(null)}
+        onKeyUp={() => onClickCategory(null)}
+        role="button"
+        tabIndex="0"
       >
         All
-      </li>
+      </div>
       {items.map((category, index) => (
-        <li
-          key={`${category}_${index}`}
+        <div
+          key={category}
           className={activeCategory === index ? classes.Active : ''}
           onClick={() => onClickCategory(index)}
+          onKeyUp={() => onClickCategory(index)}
+          role="button"
+          tabIndex="0"
         >
           {category}
-        </li>
+        </div>
       ))}
-    </ul>
+    </div>
   );
-});
+}
+
+export default memo(Categories);
 
 Categories.propTypes = {
-  // activeCategory: PropTypes.oneOf([PropTypes.number, null]),
+  activeCategory: PropTypes.string,
   items: PropTypes.arrayOf(PropTypes.string).isRequired,
-  onClickCategory: PropTypes.func,
+  onClickCategory: PropTypes.func.isRequired,
 };
 
-Categories.defaultProps = { activeCategory: null, items: [] };
+Categories.defaultProps = {
+  activeCategory: 'Rating',
+};

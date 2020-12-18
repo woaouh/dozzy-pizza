@@ -6,16 +6,14 @@ const initialState = {
 
 const getTotalPrice = (arr) => arr.reduce((sum, obj) => obj.price + sum, 0);
 
-const _get = (obj, path) => {
+const get = (obj, path) => {
   const [firstKey, ...keys] = path.split('.');
-  return keys.reduce((val, key) => {
-    return val[key];
-  }, obj[firstKey]);
+  return keys.reduce((val, key) => val[key], obj[firstKey]);
 };
 
 const getTotalSum = (obj, path) => {
-  return Object.values(obj).reduce((sum, obj) => {
-    const value = _get(obj, path);
+  Object.values(obj).reduce((sum, object) => {
+    const value = get(object, path);
     return sum + value;
   }, 0);
 };
@@ -87,10 +85,9 @@ const cart = (state = initialState, action) => {
 
     case 'MINUS_CART_ITEM': {
       const oldItems = state.items[action.payload].items;
-      const newObjItems =
-        oldItems.length > 1
-          ? state.items[action.payload].items.slice(1)
-          : oldItems;
+      const newObjItems = oldItems.length > 1
+        ? state.items[action.payload].items.slice(1)
+        : oldItems;
       const newItems = {
         ...state.items,
         [action.payload]: {

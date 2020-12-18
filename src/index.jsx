@@ -7,7 +7,7 @@ import store from './redux/store';
 
 import './index.sass';
 
-import { App } from './App';
+import App from './App';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -17,5 +17,5 @@ ReactDOM.render(
       </Provider>
     </BrowserRouter>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById('root'),
 );

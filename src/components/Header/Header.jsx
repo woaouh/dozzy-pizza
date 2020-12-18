@@ -6,9 +6,9 @@ import logoSVG from '../../assets/svg/pizza-logo.svg';
 import { ReactComponent as CartSvg } from '../../assets/svg/cart.svg';
 import classes from './Header.module.sass';
 
-import { Button } from '../Button/Button';
+import Button from '../Button/Button';
 
-export function Header() {
+export default function Header() {
   const { totalPrice, totalCount } = useSelector(({ cart }) => ({
     totalPrice: cart.totalPrice,
     totalCount: cart.totalCount,
@@ -17,9 +17,9 @@ export function Header() {
   return (
     <div className={classes.Header}>
       <div className={`container ${classes.HeaderContainer}`}>
-        <Link to='/'>
+        <Link to="/">
           <div className={classes.Logo}>
-            <img width='38' src={logoSVG} alt='Pizza logo' />
+            <img width="38" src={logoSVG} alt="Pizza logo" />
             <div>
               <h1>Dozzy Pizza</h1>
               <p>the best pizza in the world</p>
@@ -28,10 +28,13 @@ export function Header() {
         </Link>
 
         <div>
-          <Link to='/cart'>
+          <Link to="/cart">
             <Button className={classes.CartButton}>
-              <span>{totalPrice} $</span>
-              <div className={classes.Delimiter}></div>
+              <span>
+                $
+                {totalPrice}
+              </span>
+              <div className={classes.Delimiter} />
               <CartSvg />
               <span>{totalCount}</span>
             </Button>

@@ -4,16 +4,16 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setCategory, setSortBy } from '../../redux/actions/filters';
 import { fetchPizzas } from '../../redux/actions/pizzas';
 
-import { Categories } from '../../components/Categories/Categories';
-import { SortPopup } from '../../components/SortPopup/SortPopup';
+import Categories from '../../components/Categories/Categories';
+import SortPopup from '../../components/SortPopup/SortPopup';
+import PizzaList from '../../components/PizzaList/PizzaList';
 
 import classes from './Home.module.sass';
-import PizzaList from '../../components/PizzaList/PizzaList';
 
 const categoryNames = ['Meat', 'Vegan', 'Grilled', 'Spicy', 'Closed'];
 const sortItems = ['rating', 'price', 'name'];
 
-export function Home() {
+export default function Home() {
   const dispatch = useDispatch();
   const { sortBy, category } = useSelector(({ filters }) => filters);
 
@@ -30,7 +30,7 @@ export function Home() {
   }, []);
 
   return (
-    <div className='container'>
+    <div className="container">
       <div className={classes.Top}>
         <Categories
           items={categoryNames}

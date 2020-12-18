@@ -1,19 +1,20 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import { Button } from '../Button/Button';
 import { ReactComponent as PlusSvg } from '../../assets/svg/plus.svg';
 import classes from './Pizza.module.sass';
+
+import Button from '../Button/Button';
 import Selector from '../UI/Selector/Selector';
 
-export function Pizza({
+export default function Pizza({
   id,
   name,
   imageUrl,
   price,
   types,
   sizes,
-  onAddPizza,
+  addPizzaHandler,
   addedCount,
 }) {
   const doughTypes = ['thin', 'traditional'];
@@ -38,7 +39,7 @@ export function Pizza({
       size: pizzaSizes[activeSize],
       type: doughTypes[activeType],
     };
-    onAddPizza(obj);
+    addPizzaHandler(obj);
   };
 
   return (
@@ -54,7 +55,10 @@ export function Pizza({
         activeType={activeType}
       />
       <div className={classes.Bottom}>
-        <div className={classes.Price}>{price} $</div>
+        <div className={classes.Price}>
+          $
+          {price}
+        </div>
         <Button onClick={handleAddPizza} className={classes.AddButton} outline>
           <PlusSvg />
           <span>Add</span>
@@ -66,11 +70,16 @@ export function Pizza({
 }
 
 Pizza.propTypes = {
+  id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
   imageUrl: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
   types: PropTypes.arrayOf(PropTypes.number).isRequired,
   sizes: PropTypes.arrayOf(PropTypes.number).isRequired,
-  onAddPizza: PropTypes.func,
+  addPizzaHandler: PropTypes.func.isRequired,
   addedCount: PropTypes.number,
+};
+
+Pizza.defaultProps = {
+  addedCount: null,
 };
