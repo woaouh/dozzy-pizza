@@ -30,7 +30,7 @@ export default function Header() {
             <Button className={classes.CartButton}>
               <span>
                 $
-                {totalPrice}
+                {totalPrice.toFixed(2)}
               </span>
               <div className={classes.Delimiter} />
               <CartSvg />

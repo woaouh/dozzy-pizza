@@ -43,7 +43,7 @@ function Categories({ activeCategory, items }) {
 export default memo(Categories);
 
 Categories.propTypes = {
-  activeCategory: PropTypes.string,
+  activeCategory: PropTypes.number,
   items: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 

@@ -2,20 +2,19 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
-import emptyCartImage from '../../assets/img/empty-cart.png';
-import { ReactComponent as CartSvg } from '../../assets/svg/cart.svg';
-import { ReactComponent as TrashSvg } from '../../assets/svg/trash.svg';
-
-import CartItem from '../../components/CartItem/CartItem';
-
-import classes from './Cart.module.sass';
-
 import {
   clearCart,
   removeCartItem,
   plusCartItem,
   minusCartItem,
-} from '../../redux/actions/cart';
+} from '../../redux/cartSlice';
+
+import emptyCartImage from '../../assets/img/empty-cart.png';
+import { ReactComponent as CartSvg } from '../../assets/svg/cart.svg';
+import { ReactComponent as TrashSvg } from '../../assets/svg/trash.svg';
+import classes from './Cart.module.sass';
+
+import CartItem from '../../components/CartItem/CartItem';
 import Button from '../../components/Button/Button';
 
 export default function Cart() {
@@ -37,7 +36,11 @@ export default function Cart() {
   };
 
   const onMinusItem = (id) => {
-    dispatch(minusCartItem(id));
+    if (items[id].items.length === 1) {
+      dispatch(removeCartItem(id));
+    } else {
+      dispatch(minusCartItem(id));
+    }
   };
 
   return (
@@ -84,7 +87,7 @@ export default function Cart() {
                   {' '}
                   <b>
                     $
-                    {totalPrice}
+                    {totalPrice.toFixed(2)}
                   </b>
                 </span>
               </div>

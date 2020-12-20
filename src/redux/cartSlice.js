@@ -28,16 +28,67 @@ export const cartSlice = createSlice({
         },
       };
 
-      const totalPrice = getTotalPrice(newItems);
-      const totalCount = getTotalCount(newItems);
+      state.items = newItems;
+      state.totalPrice = getTotalPrice(newItems);
+      state.totalCount = getTotalCount(newItems);
+    },
+    clearCart(state) {
+      state.items = {};
+    },
+    removeCartItem(state, action) {
+      const newItems = {
+        ...state.items,
+      };
+      const currentTotalPrice = newItems[action.payload].totalPrice;
+      const currentTotalCount = newItems[action.payload].items.length;
+      delete newItems[action.payload];
+      state.items = newItems;
+      state.totalPrice -= currentTotalPrice;
+      state.totalCount -= currentTotalCount;
+    },
+    plusCartItem(state, action) {
+      const newObjItems = [
+        ...state.items[action.payload].items,
+        state.items[action.payload].items[0],
+      ];
+      const newItems = {
+        ...state.items,
+        [action.payload]: {
+          items: newObjItems,
+          totalPrice: getOneItemPrice(newObjItems),
+        },
+      };
 
       state.items = newItems;
-      state.totalPrice = totalPrice.toFixed(2);
-      state.totalCount = totalCount;
+      state.totalPrice = getTotalPrice(newItems);
+      state.totalCount = getTotalCount(newItems);
+    },
+    minusCartItem(state, action) {
+      const oldItems = state.items[action.payload].items;
+      const newObjItems = oldItems.length > 1
+        ? state.items[action.payload].items.slice(1)
+        : oldItems;
+      const newItems = {
+        ...state.items,
+        [action.payload]: {
+          items: newObjItems,
+          totalPrice: getOneItemPrice(newObjItems),
+        },
+      };
+
+      state.items = newItems;
+      state.totalPrice = getTotalPrice(newItems);
+      state.totalCount = getTotalCount(newItems);
     },
   },
 });
 
-export const { addPizzaToCart } = cartSlice.actions;
+export const {
+  addPizzaToCart,
+  clearCart,
+  removeCartItem,
+  plusCartItem,
+  minusCartItem,
+} = cartSlice.actions;
 
 export default cartSlice.reducer;

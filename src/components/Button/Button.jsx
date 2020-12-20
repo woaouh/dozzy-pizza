@@ -28,13 +28,14 @@ export default function Button({
 
 Button.propTypes = {
   onClick: PropTypes.func,
-  className: PropTypes.string.isRequired,
+  className: PropTypes.string,
   outline: PropTypes.bool,
   circle: PropTypes.bool,
   children: PropTypes.any,
 };
 
 Button.defaultProps = {
+  className: null,
   onClick: null,
   outline: false,
   circle: false,

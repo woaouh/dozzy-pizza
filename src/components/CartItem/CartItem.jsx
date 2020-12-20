@@ -63,7 +63,7 @@ export default function CartItem({
       <div className={classes.Price}>
         <b>
           $
-          {totalPrice}
+          {totalPrice.toFixed(2)}
         </b>
       </div>
       <div className={classes.Remove}>
@@ -76,7 +76,7 @@ export default function CartItem({
 }
 
 CartItem.propTypes = {
-  id: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   size: PropTypes.number.isRequired,
