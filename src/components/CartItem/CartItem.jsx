@@ -49,7 +49,8 @@ export default function CartItem({
       <div className={classes.Count}>
         <Button
           onClick={handleMinusItem}
-          className={`${classes.CircleButton} ${classes.CountMinus}`}
+          className={classes.CountMinus}
+          circle
           outline
         >
           <PlusSvg />

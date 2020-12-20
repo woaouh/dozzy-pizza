@@ -3,18 +3,18 @@ import React, {
   useEffect,
   useRef,
   memo,
+  useCallback,
 } from 'react';
+import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { ReactComponent as ArrowSvg } from '../../assets/svg/arrow-top.svg';
+import { setSort } from '../../redux/pizzaSlice';
 
+import { ReactComponent as ArrowSvg } from '../../assets/svg/arrow-top.svg';
 import classes from './SortPopup.module.sass';
 
-function SortPopup({
-  items,
-  activeSortType,
-  onClickSortType,
-}) {
+function SortPopup({ items, activeSortType }) {
+  const dispatch = useDispatch();
   const [visiblePopup, setVisiblePopup] = useState(false);
   const activeLabel = activeSortType;
   const sortRef = useRef();
@@ -30,8 +30,12 @@ function SortPopup({
     }
   };
 
+  const onSelectSortType = useCallback((type) => {
+    dispatch(setSort(type));
+  }, []);
+
   const onSelectSort = (type) => {
-    onClickSortType(type);
+    onSelectSortType(type);
     setVisiblePopup(false);
   };
 
@@ -72,5 +76,4 @@ export default memo(SortPopup);
 SortPopup.propTypes = {
   items: PropTypes.arrayOf(PropTypes.string).isRequired,
   activeSortType: PropTypes.string.isRequired,
-  onClickSortType: PropTypes.func.isRequired,
 };

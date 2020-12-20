@@ -9,10 +9,8 @@ import classes from './Header.module.sass';
 import Button from '../Button/Button';
 
 export default function Header() {
-  const { totalPrice, totalCount } = useSelector(({ cart }) => ({
-    totalPrice: cart.totalPrice,
-    totalCount: cart.totalCount,
-  }));
+  const totalPrice = useSelector((state) => state.cart.totalPrice);
+  const totalCount = useSelector((state) => state.cart.totalCount);
 
   return (
     <div className={classes.Header}>

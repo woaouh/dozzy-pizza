@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
+
+import { addPizzaToCart } from '../../redux/cartSlice';
 
 import { ReactComponent as PlusSvg } from '../../assets/svg/plus.svg';
 import classes from './Pizza.module.sass';
@@ -14,9 +17,9 @@ export default function Pizza({
   price,
   types,
   sizes,
-  addPizzaHandler,
-  addedCount,
 }) {
+  const dispatch = useDispatch();
+  const cartItems = useSelector(({ cart }) => cart.items);
   const doughTypes = ['thin', 'traditional'];
   const pizzaSizes = [26, 30, 40];
   const [activeType, setActiveType] = useState(types[0]);
@@ -39,7 +42,7 @@ export default function Pizza({
       size: pizzaSizes[activeSize],
       type: doughTypes[activeType],
     };
-    addPizzaHandler(obj);
+    dispatch(addPizzaToCart(obj));
   };
 
   return (
@@ -62,7 +65,7 @@ export default function Pizza({
         <Button onClick={handleAddPizza} className={classes.AddButton} outline>
           <PlusSvg />
           <span>Add</span>
-          {addedCount && <i>{addedCount}</i>}
+          {cartItems[id] && <i>{cartItems[id].items.length}</i>}
         </Button>
       </div>
     </li>
@@ -76,10 +79,4 @@ Pizza.propTypes = {
   price: PropTypes.number.isRequired,
   types: PropTypes.arrayOf(PropTypes.number).isRequired,
   sizes: PropTypes.arrayOf(PropTypes.number).isRequired,
-  addPizzaHandler: PropTypes.func.isRequired,
-  addedCount: PropTypes.number,
-};
-
-Pizza.defaultProps = {
-  addedCount: null,
 };

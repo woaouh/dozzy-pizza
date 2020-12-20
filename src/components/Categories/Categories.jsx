@@ -1,19 +1,24 @@
-import React, { memo } from 'react';
+import React, { memo, useCallback } from 'react';
+import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
+
+import { setCategory } from '../../redux/pizzaSlice';
 
 import classes from './Categories.module.sass';
 
-function Categories({
-  activeCategory,
-  items,
-  onClickCategory,
-}) {
+function Categories({ activeCategory, items }) {
+  const dispatch = useDispatch();
+
+  const onSelectCategory = useCallback((index) => {
+    dispatch(setCategory(index));
+  }, []);
+
   return (
     <div className={classes.Categories}>
       <div
         className={activeCategory === null ? classes.Active : ''}
-        onClick={() => onClickCategory(null)}
-        onKeyUp={() => onClickCategory(null)}
+        onClick={() => onSelectCategory(null)}
+        onKeyUp={() => onSelectCategory(null)}
         role="button"
         tabIndex="0"
       >
@@ -23,8 +28,8 @@ function Categories({
         <div
           key={category}
           className={activeCategory === index ? classes.Active : ''}
-          onClick={() => onClickCategory(index)}
-          onKeyUp={() => onClickCategory(index)}
+          onClick={() => onSelectCategory(index)}
+          onKeyUp={() => onSelectCategory(index)}
           role="button"
           tabIndex="0"
         >
@@ -40,7 +45,6 @@ export default memo(Categories);
 Categories.propTypes = {
   activeCategory: PropTypes.string,
   items: PropTypes.arrayOf(PropTypes.string).isRequired,
-  onClickCategory: PropTypes.func.isRequired,
 };
 
 Categories.defaultProps = {
