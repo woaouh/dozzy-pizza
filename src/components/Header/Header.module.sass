@@ -26,6 +26,8 @@
       margin-right: 8px
       margin-bottom: 1px
     span
+      display: flex
+      align-items: center
       font-weight: 600
       font-size: 16px
   .Delimiter
@@ -35,3 +37,22 @@
     margin-left: 14px
     margin-right: 14px
   
+@media ( max-width: 570px )
+  .Header
+    .Logo
+      div
+        display: none
+
+@media ( max-width: 340px )
+  .Header
+    .HeaderContainer
+      flex-direction: column
+    .Logo
+      display: block
+      margin-bottom: 30px
+      text-align: center
+      img
+        margin: 0
+      div
+        display: block
+

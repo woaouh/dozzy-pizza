@@ -37,7 +37,7 @@ export default function Cart() {
                 <span onClick={onClearCart} onKeyUp={onClearCart} role="button" tabIndex="0">Empty cart</span>
               </div>
             </div>
-            <div className="content__items">
+            <div>
               {addedPizzas.map((pizza) => (
                 <CartItem
                   key={pizza.id}

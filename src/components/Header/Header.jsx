@@ -13,7 +13,7 @@ export default function Header() {
   const totalCount = useSelector((state) => state.cart.totalCount);
 
   return (
-    <div className={classes.Header}>
+    <header className={classes.Header}>
       <div className={`container ${classes.HeaderContainer}`}>
         <Link to="/">
           <div className={classes.Logo}>
@@ -33,12 +33,14 @@ export default function Header() {
                 {totalPrice.toFixed(2)}
               </span>
               <div className={classes.Delimiter} />
-              <CartSvg />
-              <span>{totalCount}</span>
+              <span>
+                <CartSvg />
+                <span>{totalCount}</span>
+              </span>
             </Button>
           </Link>
         </div>
       </div>
-    </div>
+    </header>
   );
 }

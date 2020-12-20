@@ -1,22 +1,16 @@
 .CartItem
-  display: flex
-  width: 100%
+  display: grid
+  grid-template-columns: 10% 40% 15% 15% 10%
+  justify-items: stretch
+  align-items: center
+  grid-gap: 15px
   border-top: 1px solid #f6f6f6
   padding-top: 30px
   margin-top: 30px
+  max-width: 100%
   .ImageContainer 
-    display: flex
-    align-items: center
-    margin-right: 15px
-    width: 10%
-    img 
-      width: 80px
-      height: 80px
+    max-width: 80px
   .Info
-    display: flex
-    flex-direction: column
-    justify-content: center
-    width: 40%
     h3
       font-weight: bold
       font-size: 22px
@@ -28,24 +22,19 @@
   .Count
     display: flex
     align-items: center
-    justify-content: space-between
-    width: 13%
+    justify-content: center
+    b
+      margin: 0 10px
 
-.Price 
-  display: flex
-  align-items: center
-  justify-content: center
-  width: 33%
+.Price
+  text-align: center
   b 
     font-weight: bold
     font-size: 22px
     letter-spacing: 0.01em
 
-.Remove 
-  display: flex
-  align-items: center
-  justify-content: flex-end
-  width: 4%
+.Remove
+  margin-left: auto
   .RemoveButton
     &:hover, &:active
       border-color: #2a2a2a
@@ -60,3 +49,13 @@
   svg 
     path:first-of-type
       display: none
+
+@media ( max-width: 800px )
+  .CartItem
+    grid-template-columns: 10% 40% 20% 10% 10%
+
+@media ( max-width: 650px )
+  .CartItem
+    grid-template-columns: repeat(3, 1fr)
+    .Info
+      grid-column: 2/5

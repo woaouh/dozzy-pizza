@@ -100,3 +100,30 @@
     path 
       fill: transparent
       stroke-width: 2
+
+@media ( max-width: 730px )
+  .Cart
+    .EmptyCart
+      width: auto
+
+@media ( max-width: 650px )
+  .Cart
+    .Bottom
+      .Buttons
+        display: flex
+        flex-direction: column
+        a
+          order: 2
+        div
+          order: 1
+        button, .PayButton
+          width: 100%
+        button:first-child
+          margin-bottom: 30px
+
+@media ( max-width: 570px )
+  .Cart
+    .Bottom
+      .Details
+        flex-direction: column
+          
