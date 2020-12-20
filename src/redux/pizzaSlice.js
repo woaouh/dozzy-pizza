@@ -7,16 +7,17 @@ const initialState = {
   status: 'idle',
   error: null,
   category: null,
-  sort: 'rating',
   filters: {
     sort: 'rating',
     category: null,
   },
 };
 
+const API = 'https://dozzy-pizza-default-rtdb.europe-west1.firebasedatabase.app/pizzas.json';
+
 export const fetchPizza = createAsyncThunk(
   'pizza/fetchPizza',
-  async (filters) => Axios.get(`/pizzas?${filters.category !== null ? `category=${filters.category}` : ''}&_sort=${filters.sort}&_order=asc`)
+  async () => Axios.get(API)
     .then(({ data }) => data),
 );
 

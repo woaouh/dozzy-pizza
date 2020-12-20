@@ -17,8 +17,8 @@ export default function Home() {
   const filters = useSelector(({ pizza }) => pizza.filters);
 
   useEffect(() => {
-    dispatch(fetchPizza(filters));
-  }, [filters]);
+    dispatch(fetchPizza());
+  }, []);
 
   return (
     <div className="container">
