@@ -1,11 +1,11 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 
+import classes from './App.module.sass';
+
 import Header from './components/Header/Header';
 import Home from './pages/Home/Home';
 import Cart from './pages/Cart/Cart';
-
-import classes from './App.module.sass';
 
 export default function App() {
   return (

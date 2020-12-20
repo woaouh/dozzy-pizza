@@ -8,7 +8,7 @@ import { ReactComponent as PlusSvg } from '../../assets/svg/plus.svg';
 import classes from './Pizza.module.sass';
 
 import Button from '../Button/Button';
-import Selector from '../UI/Selector/Selector';
+import Selector from '../Selector/Selector';
 
 export default function Pizza({
   id,

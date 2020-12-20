@@ -2,12 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
-import {
-  clearCart,
-  removeCartItem,
-  plusCartItem,
-  minusCartItem,
-} from '../../redux/cartSlice';
+import { clearCart } from '../../redux/cartSlice';
 
 import emptyCartImage from '../../assets/img/empty-cart.png';
 import { ReactComponent as CartSvg } from '../../assets/svg/cart.svg';
@@ -25,22 +20,6 @@ export default function Cart() {
 
   const onClearCart = () => {
     dispatch(clearCart());
-  };
-
-  const onRemoveItem = (id) => {
-    dispatch(removeCartItem(id));
-  };
-
-  const onPlusItem = (id) => {
-    dispatch(plusCartItem(id));
-  };
-
-  const onMinusItem = (id) => {
-    if (items[id].items.length === 1) {
-      dispatch(removeCartItem(id));
-    } else {
-      dispatch(minusCartItem(id));
-    }
   };
 
   return (
@@ -61,17 +40,12 @@ export default function Cart() {
             <div className="content__items">
               {addedPizzas.map((pizza) => (
                 <CartItem
-                  key={`${pizza.id}_${pizza.name}`}
+                  key={pizza.id}
                   id={pizza.id}
                   name={pizza.name}
                   type={pizza.type}
                   size={pizza.size}
                   imageUrl={pizza.imageUrl}
-                  totalPrice={items[pizza.id].totalPrice}
-                  totalCount={items[pizza.id].items.length}
-                  onRemoveItem={onRemoveItem}
-                  onPlusItem={onPlusItem}
-                  onMinusItem={onMinusItem}
                 />
               ))}
             </div>

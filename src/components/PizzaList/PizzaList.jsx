@@ -1,14 +1,13 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
+import classes from './PizzaList.module.sass';
+
 import Pizza from '../Pizza/Pizza';
 import PizzaSkeleton from '../Pizza/PizzaSkeleton';
 
-import classes from './PizzaList.module.sass';
-
 export default function PizzaList() {
-  const status = useSelector(({ pizza }) => pizza.status);
-  const items = useSelector(({ pizza }) => pizza.items);
+  const { status, items } = useSelector(({ pizza }) => pizza);
 
   let content;
 

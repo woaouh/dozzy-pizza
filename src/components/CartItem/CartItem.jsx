@@ -1,10 +1,13 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import Button from '../Button/Button';
-import { ReactComponent as PlusSvg } from '../../assets/svg/plus.svg';
+import { removeCartItem, plusCartItem, minusCartItem } from '../../redux/cartSlice';
 
+import { ReactComponent as PlusSvg } from '../../assets/svg/plus.svg';
 import classes from './CartItem.module.sass';
+
+import Button from '../Button/Button';
 
 export default function CartItem({
   id,
@@ -12,22 +15,24 @@ export default function CartItem({
   type,
   size,
   imageUrl,
-  totalPrice,
-  totalCount,
-  onRemoveItem,
-  onPlusItem,
-  onMinusItem,
 }) {
-  const handleRemoveItem = () => {
-    onRemoveItem(id);
+  const dispatch = useDispatch();
+  const items = useSelector(({ cart }) => cart.items);
+
+  const onMinusItem = () => {
+    if (items[id].items.length === 1) {
+      dispatch(removeCartItem(id));
+    } else {
+      dispatch(minusCartItem(id));
+    }
   };
 
-  const handlePlusItem = () => {
-    onPlusItem(id);
+  const onPlusItem = () => {
+    dispatch(plusCartItem(id));
   };
 
-  const handleMinusItem = () => {
-    onMinusItem(id);
+  const onRemoveItem = () => {
+    dispatch(removeCartItem(id));
   };
 
   return (
@@ -48,26 +53,26 @@ export default function CartItem({
       </div>
       <div className={classes.Count}>
         <Button
-          onClick={handleMinusItem}
+          onClick={onMinusItem}
           className={classes.CountMinus}
           circle
           outline
         >
           <PlusSvg />
         </Button>
-        <b>{totalCount}</b>
-        <Button onClick={handlePlusItem} circle outline>
+        <b>{items[id].items.length}</b>
+        <Button onClick={onPlusItem} circle outline>
           <PlusSvg />
         </Button>
       </div>
       <div className={classes.Price}>
         <b>
           $
-          {totalPrice.toFixed(2)}
+          {(items[id].totalPrice).toFixed(2)}
         </b>
       </div>
       <div className={classes.Remove}>
-        <Button onClick={handleRemoveItem} className={classes.RemoveButton} circle outline>
+        <Button onClick={onRemoveItem} className={classes.RemoveButton} circle outline>
           <PlusSvg />
         </Button>
       </div>
@@ -81,9 +86,4 @@ CartItem.propTypes = {
   type: PropTypes.string.isRequired,
   size: PropTypes.number.isRequired,
   imageUrl: PropTypes.string.isRequired,
-  totalPrice: PropTypes.number.isRequired,
-  totalCount: PropTypes.number.isRequired,
-  onRemoveItem: PropTypes.func.isRequired,
-  onPlusItem: PropTypes.func.isRequired,
-  onMinusItem: PropTypes.func.isRequired,
 };

@@ -3,11 +3,11 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { fetchPizza } from '../../redux/pizzaSlice';
 
+import classes from './Home.module.sass';
+
 import Categories from '../../components/Categories/Categories';
 import SortPopup from '../../components/SortPopup/SortPopup';
 import PizzaList from '../../components/PizzaList/PizzaList';
-
-import classes from './Home.module.sass';
 
 const categoryNames = ['Meat', 'Vegan', 'Grilled', 'Spicy', 'Closed'];
 const sortItems = ['rating', 'price', 'name'];
