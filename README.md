@@ -1,4 +1,4 @@
-[![Maintainability](https://api.codeclimate.com/v1/badges/aa38b62a19fcae117eb7/maintainability)](https://codeclimate.com/github/woaouh/dozzy-pizza/maintainability)
+[![Maintainability](https://api.codeclimate.com/v1/badges/aa38b62a19fcae117eb7/maintainability)](https://codeclimate.com/github/woaouh/dozzy-pizza/maintainability) [![ESLint](https://github.com/woaouh/dozzy-pizza/workflows/ESLint/badge.svg)](https://github.com/woaouh/dozzy-pizza/actions)
 
 # Dozzy-Pizza — the web application that sells pizza 🍕
 
