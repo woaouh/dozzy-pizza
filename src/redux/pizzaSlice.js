@@ -1,17 +1,10 @@
 /* eslint-disable no-param-reassign */
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, createEntityAdapter } from '@reduxjs/toolkit';
 import Axios from 'axios';
 
-const initialState = {
-  items: [],
-  status: 'idle',
-  error: null,
-  category: null,
-  filters: {
-    sort: 'rating',
-    category: null,
-  },
-};
+const pizzaAdapter = createEntityAdapter({
+  selectId: (pizza) => pizza.id,
+});
 
 const API = 'https://dozzy-pizza-default-rtdb.europe-west1.firebasedatabase.app/pizzas.json';
 
@@ -23,7 +16,14 @@ export const fetchPizza = createAsyncThunk(
 
 export const pizzaSlice = createSlice({
   name: 'pizza',
-  initialState,
+  initialState: pizzaAdapter.getInitialState({
+    status: 'idle',
+    error: null,
+    filters: {
+      sort: 'rating',
+      category: null,
+    },
+  }),
   reducers: {
     setSort(state, action) {
       state.filters.sort = action.payload;
@@ -38,7 +38,7 @@ export const pizzaSlice = createSlice({
     },
     [fetchPizza.fulfilled]: (state, action) => {
       state.status = 'succeeded';
-      state.items = action.payload;
+      pizzaAdapter.setAll(state, action.payload);
     },
     [fetchPizza.rejected]: (state, action) => {
       state.status = 'failed';
