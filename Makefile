@@ -4,8 +4,12 @@ install:
 start:
 	npm start
 
+lint:
+	./node_modules/.bin/eslint . --ext .js --ext .jsx
+
 test:
 	npm test
 
-lint:
-	npx eslint .
+push:
+	./node_modules/.bin/eslint . --ext .js --ext .jsx
+	git push
