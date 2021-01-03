@@ -4,8 +4,8 @@
 
 *To run the project locally:*
 ```
-$ npm install
-$ npm start
+$ make install
+$ make start
 ```
 
 ## Project implementation
